@@ -19,7 +19,7 @@ import com.aziru.restworld.models.User;
 import com.aziru.restworld.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1/users")
 public class UserController {
 
 	@Autowired

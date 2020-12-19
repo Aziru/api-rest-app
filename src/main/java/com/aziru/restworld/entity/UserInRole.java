@@ -1,6 +1,10 @@
 package com.aziru.restworld.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -9,6 +13,11 @@ import javax.persistence.Table;
 @Table(name = "user_in_role")
 public class UserInRole {
 
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private Role role;
@@ -16,6 +25,20 @@ public class UserInRole {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private User user;
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(final Integer id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the role
@@ -49,8 +72,7 @@ public class UserInRole {
 	public int hashCode() {
 		final var prime = 31;
 		var result = 1;
-		result = (prime * result) + ((role == null) ? 0 : role.hashCode());
-		result = (prime * result) + ((user == null) ? 0 : user.hashCode());
+		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -66,18 +88,11 @@ public class UserInRole {
 			return false;
 		}
 		final var other = (UserInRole) obj;
-		if (role == null) {
-			if (other.role != null) {
+		if (id == null) {
+			if (other.id != null) {
 				return false;
 			}
-		} else if (!role.equals(other.role)) {
-			return false;
-		}
-		if (user == null) {
-			if (other.user != null) {
-				return false;
-			}
-		} else if (!user.equals(other.user)) {
+		} else if (!id.equals(other.id)) {
 			return false;
 		}
 		return true;
