@@ -37,7 +37,7 @@ public class RoleController {
 	@PutMapping(value = "/{roleId}")
 	public ResponseEntity<Role> updateRole(@PathVariable(name = "roleId") final Integer id,
 			@RequestBody final Role role) {
-		return new ResponseEntity<>(roleService.updateRole(id, role), HttpStatus.CREATED);
+		return new ResponseEntity<>(roleService.updateRole(id, role), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{roleId}")
