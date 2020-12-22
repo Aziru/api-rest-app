@@ -25,7 +25,7 @@ public class ApiRestAppApplication implements ApplicationRunner {
 
 	@Override
 	public void run(final ApplicationArguments args) throws Exception {
-		for (var i = 0; i < 100; i++) {
+		for (var i = 0; i < 100000; i++) {
 			final var user = new User();
 			user.setNickName(faker.funnyName().name());
 			user.setUserName(faker.name().username());

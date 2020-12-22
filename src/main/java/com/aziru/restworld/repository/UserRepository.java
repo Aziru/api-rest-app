@@ -9,4 +9,6 @@ import com.aziru.restworld.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByUserName(String username);
+
+	User findByUserNameAndPassword(String username, String password);
 }

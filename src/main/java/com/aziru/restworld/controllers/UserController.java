@@ -1,8 +1,7 @@
 package com.aziru.restworld.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,10 +23,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping // Method HTTP + resource: handler method
-	public ResponseEntity<List<User>> getUsers(
-			@RequestParam(value = "startWith", required = false) final String startWith) {
-		return new ResponseEntity<>(userService.getUsers(startWith), HttpStatus.OK);
+	@GetMapping
+	public ResponseEntity<Page<User>> getUsers(
+			@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
+			@RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
+		return new ResponseEntity<>(userService.getUsers(page, size), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{userId}")
@@ -40,6 +40,11 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserByUserName(username), HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/authenticate")
+	public ResponseEntity<User> authenticate(@RequestBody final User user) {
+		return new ResponseEntity<>(userService.getUserByUserNameAndPassword(user), HttpStatus.OK);
+	}
+
 	@PostMapping
 	public ResponseEntity<User> addUser(@RequestBody final User user) {
 		return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
@@ -50,19 +55,4 @@ public class UserController {
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-
-//	@GetMapping // Method HTTP + resource: handler method
-//	public ResponseEntity<List<User>> getUsers(
-//			@RequestParam(value = "startWith", required = false) final String startWith) {
-//		return new ResponseEntity<>(userService.getUsers(startWith), HttpStatus.OK);
-//	}
-//
-
-//	@PutMapping(value = "/{username}")
-//	public ResponseEntity<User> updateUser(@PathVariable("username") final String username,
-//			@RequestBody final User user) {
-//		return new ResponseEntity<>(userService.updateUser(username, user), HttpStatus.OK);
-//	}
-//
-
 }
