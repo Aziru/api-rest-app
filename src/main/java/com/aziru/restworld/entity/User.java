@@ -18,10 +18,10 @@ public class User {
 	private Integer id;
 
 	@Column()
-	private String username;
+	private String userName;
 
 	@Column
-	private String nickname;
+	private String nickName;
 
 	@Column
 	private String password;
@@ -45,31 +45,31 @@ public class User {
 	}
 
 	/**
-	 * @return the username
+	 * @return the userName
 	 */
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param userName the userName to set
 	 */
-	public void setUsername(final String username) {
-		this.username = username;
+	public void setUserName(final String userName) {
+		this.userName = userName;
 	}
 
 	/**
-	 * @return the nickname
+	 * @return the nickName
 	 */
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
 
 	/**
-	 * @param nickname the nickname to set
+	 * @param nickName the nickName to set
 	 */
-	public void setNickname(final String nickname) {
-		this.nickname = nickname;
+	public void setNickName(final String nickName) {
+		this.nickName = nickName;
 	}
 
 	/**
