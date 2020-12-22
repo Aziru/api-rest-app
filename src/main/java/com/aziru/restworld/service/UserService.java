@@ -40,6 +40,15 @@ public class UserService {
 	 * @param page
 	 * @return the users
 	 */
+	public Page<String> getUsersNames(final int page, final int size) {
+		return userRepository.findUserNames(PageRequest.of(page, size));
+	}
+
+	/**
+	 * @param size
+	 * @param page
+	 * @return the users
+	 */
 	public Page<User> getUsers(final int page, final int size) {
 		return userRepository.findAll(PageRequest.of(page, size));
 	}

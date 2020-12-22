@@ -35,6 +35,13 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/usernames")
+	public ResponseEntity<Page<String>> getUsersById(
+			@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
+			@RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
+		return new ResponseEntity<>(userService.getUsersNames(page, size), HttpStatus.OK);
+	}
+
 	@RequestMapping("/{username}")
 	public ResponseEntity<User> getUserByUserName(@PathVariable("username") final String username) {
 		return new ResponseEntity<>(userService.getUserByUserName(username), HttpStatus.OK);
