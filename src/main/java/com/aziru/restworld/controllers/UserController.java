@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aziru.restworld.entity.User;
 import com.aziru.restworld.service.UserService;
 
+import io.micrometer.core.annotation.Timed;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +26,7 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping
+	@Timed("get.users")
 	public ResponseEntity<Page<User>> getUsers(
 			@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
 			@RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
