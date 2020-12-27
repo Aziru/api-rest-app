@@ -21,28 +21,28 @@ import com.aziru.restworld.service.RoleService;
 @RequestMapping(value = "/roles")
 public class RoleController {
 
-	@Autowired
-	private RoleService roleService;
+    @Autowired
+    private RoleService roleService;
 
-	@GetMapping
-	public ResponseEntity<List<Role>> getRoles() {
-		return new ResponseEntity<>(roleService.getRoles(), HttpStatus.OK);
-	}
+    @GetMapping
+    public ResponseEntity<List<Role>> getRoles() {
+	return new ResponseEntity<>(roleService.getRoles(), HttpStatus.OK);
+    }
 
-	@PostMapping
-	public ResponseEntity<Role> createRole(@RequestBody final Role role) {
-		return new ResponseEntity<>(roleService.createRole(role), HttpStatus.CREATED);
-	}
+    @PostMapping
+    public ResponseEntity<Role> createRole(@RequestBody final Role role) {
+	return new ResponseEntity<>(roleService.createRole(role), HttpStatus.CREATED);
+    }
 
-	@PutMapping(value = "/{roleId}")
-	public ResponseEntity<Role> updateRole(@PathVariable(name = "roleId") final Integer id,
-			@RequestBody final Role role) {
-		return new ResponseEntity<>(roleService.updateRole(id, role), HttpStatus.OK);
-	}
+    @PutMapping(value = "/{roleId}")
+    public ResponseEntity<Role> updateRole(@PathVariable(name = "roleId") final Integer id,
+	    @RequestBody final Role role) {
+	return new ResponseEntity<>(roleService.updateRole(id, role), HttpStatus.OK);
+    }
 
-	@DeleteMapping(value = "/{roleId}")
-	public ResponseEntity<Void> deleteRole(@PathVariable(name = "roleId") final Integer id) {
-		roleService.deleteRole(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
+    @DeleteMapping(value = "/{roleId}")
+    public ResponseEntity<Void> deleteRole(@PathVariable(name = "roleId") final Integer id) {
+	roleService.deleteRole(id);
+	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

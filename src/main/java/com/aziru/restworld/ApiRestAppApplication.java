@@ -13,25 +13,25 @@ import com.github.javafaker.Faker;
 @SpringBootApplication
 public class ApiRestAppApplication implements ApplicationRunner {
 
-	@Autowired
-	private Faker faker;
+    @Autowired
+    private Faker faker;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	public static void main(final String[] args) {
-		SpringApplication.run(ApiRestAppApplication.class, args);
+    public static void main(final String[] args) {
+	SpringApplication.run(ApiRestAppApplication.class, args);
+    }
+
+    @Override
+    public void run(final ApplicationArguments args) throws Exception {
+	for (var i = 0; i < 100000; i++) {
+	    final var user = new User();
+	    user.setNickName(faker.funnyName().name());
+	    user.setUserName(faker.name().username());
+	    user.setPassword(faker.dragonBall().character());
+
+	    userRepository.save(user);
 	}
-
-	@Override
-	public void run(final ApplicationArguments args) throws Exception {
-		for (var i = 0; i < 100000; i++) {
-			final var user = new User();
-			user.setNickName(faker.funnyName().name());
-			user.setUserName(faker.name().username());
-			user.setPassword(faker.dragonBall().character());
-
-			userRepository.save(user);
-		}
-	}
+    }
 }

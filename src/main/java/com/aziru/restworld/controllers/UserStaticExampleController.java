@@ -22,34 +22,34 @@ import com.aziru.restworld.service.UserStaticExampleService;
 @RequestMapping("/v1/users")
 public class UserStaticExampleController {
 
-	@Autowired
-	private UserStaticExampleService userStaticExampleService;
+    @Autowired
+    private UserStaticExampleService userStaticExampleService;
 
-	@GetMapping // Method HTTP + resource: handler method
-	public ResponseEntity<List<User>> getUsers(
-			@RequestParam(value = "startWith", required = false) final String startWith) {
-		return new ResponseEntity<>(userStaticExampleService.getUsers(startWith), HttpStatus.OK);
-	}
+    @GetMapping // Method HTTP + resource: handler method
+    public ResponseEntity<List<User>> getUsers(
+	    @RequestParam(value = "startWith", required = false) final String startWith) {
+	return new ResponseEntity<>(userStaticExampleService.getUsers(startWith), HttpStatus.OK);
+    }
 
-	@RequestMapping("/{username}")
-	public ResponseEntity<User> getUserByUserName(@PathVariable("username") final String username) {
-		return new ResponseEntity<>(userStaticExampleService.getUserByUserName(username), HttpStatus.OK);
-	}
+    @RequestMapping("/{username}")
+    public ResponseEntity<User> getUserByUserName(@PathVariable("username") final String username) {
+	return new ResponseEntity<>(userStaticExampleService.getUserByUserName(username), HttpStatus.OK);
+    }
 
-	@PostMapping
-	public ResponseEntity<User> addUser(@RequestBody final User user) {
-		return new ResponseEntity<>(userStaticExampleService.createUser(user), HttpStatus.OK);
-	}
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody final User user) {
+	return new ResponseEntity<>(userStaticExampleService.createUser(user), HttpStatus.OK);
+    }
 
-	@PutMapping(value = "/{username}")
-	public ResponseEntity<User> updateUser(@PathVariable("username") final String username,
-			@RequestBody final User user) {
-		return new ResponseEntity<>(userStaticExampleService.updateUser(username, user), HttpStatus.OK);
-	}
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<User> updateUser(@PathVariable("username") final String username,
+	    @RequestBody final User user) {
+	return new ResponseEntity<>(userStaticExampleService.updateUser(username, user), HttpStatus.OK);
+    }
 
-	@DeleteMapping(value = "/{username}")
-	public ResponseEntity<Void> deleteUser(@PathVariable("username") final String username) {
-		userStaticExampleService.deleteUser(username);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("username") final String username) {
+	userStaticExampleService.deleteUser(username);
+	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

@@ -17,20 +17,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	@Value("${swagger.base.package}")
-	private String basePackage;
+    @Value("${swagger.base.package}")
+    private String basePackage;
 
-	@Bean
-	public Docket api() {
+    @Bean
+    public Docket api() {
 
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(getApiInfo()).select()
-				.apis(RequestHandlerSelectors.basePackage(basePackage)).paths(PathSelectors.any()).build();
-	}
+	return new Docket(DocumentationType.SWAGGER_2).apiInfo(getApiInfo()).select()
+		.apis(RequestHandlerSelectors.basePackage(basePackage)).paths(PathSelectors.any()).build()
+		.useDefaultResponseMessages(false);
+    }
 
-	private ApiInfo getApiInfo() {
-		return new ApiInfoBuilder().title("Rest API App").version("v1.0").license("Apache 2.0")
-				.contact(new Contact("Alejandro Álvarez", "https://gitlab.com/training98/api-rest-app",
-						"aalvarezmartin@gmail.com"))
-				.build();
-	}
+    private ApiInfo getApiInfo() {
+	return new ApiInfoBuilder().title("Rest API App").version("v1.0").license("Apache 2.0")
+		.contact(new Contact("Alejandro Álvarez", "https://gitlab.com/training98/api-rest-app",
+			"aalvarezmartin@gmail.com"))
+		.build();
+    }
 }

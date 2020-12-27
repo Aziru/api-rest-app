@@ -11,10 +11,10 @@ import com.aziru.restworld.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	User findByUserName(String username);
+    User findByUserName(String username);
 
-	User findByUserNameAndPassword(String username, String password);
+    User findByUserNameAndPassword(String username, String password);
 
-	@Query("SELECT u.userName FROM User u")
-	Page<String> findUserNames(Pageable pageable);
+    @Query("SELECT u.userName FROM User u")
+    Page<String> findUserNames(Pageable pageable);
 }

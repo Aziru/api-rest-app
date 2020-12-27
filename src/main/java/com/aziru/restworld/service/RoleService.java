@@ -13,32 +13,32 @@ import com.aziru.restworld.repository.RoleRepository;
 @Service
 public class RoleService {
 
-	@Autowired
-	private RoleRepository roleRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
-	public List<Role> getRoles() {
-		return roleRepository.findAll();
-	}
+    public List<Role> getRoles() {
+	return roleRepository.findAll();
+    }
 
-	public Role createRole(final Role role) {
-		return roleRepository.save(role);
-	}
+    public Role createRole(final Role role) {
+	return roleRepository.save(role);
+    }
 
-	public Role updateRole(final Integer id, final Role role) {
-		final var roleToUpdate = roleRepository.findById(id);
-		if (roleToUpdate.isPresent()) {
-			return roleRepository.save(role);
-		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Role id %s doesnt exist", id));
-		}
+    public Role updateRole(final Integer id, final Role role) {
+	final var roleToUpdate = roleRepository.findById(id);
+	if (roleToUpdate.isPresent()) {
+	    return roleRepository.save(role);
+	} else {
+	    throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Role id %s doesnt exist", id));
 	}
+    }
 
-	public void deleteRole(final Integer id) {
-		final var roleToDelete = roleRepository.findById(id);
-		if (roleToDelete.isPresent()) {
-			roleRepository.deleteById(id);
-		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Role id %s doesnt exist", id));
-		}
+    public void deleteRole(final Integer id) {
+	final var roleToDelete = roleRepository.findById(id);
+	if (roleToDelete.isPresent()) {
+	    roleRepository.deleteById(id);
+	} else {
+	    throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Role id %s doesnt exist", id));
 	}
+    }
 }

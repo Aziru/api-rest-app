@@ -8,8 +8,8 @@ import com.github.javafaker.Faker;
 @Configuration
 public class FakerBean {
 
-	@Bean
-	public Faker getFaker() {
-		return new Faker();
-	}
+    @Bean
+    public Faker getFaker() {
+	return new Faker();
+    }
 }
