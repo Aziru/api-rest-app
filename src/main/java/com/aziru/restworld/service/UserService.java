@@ -1,6 +1,9 @@
 package com.aziru.restworld.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,8 @@ import com.aziru.restworld.repository.UserRepository;
 
 @Service
 public class UserService {
+
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -59,8 +64,12 @@ public class UserService {
      * @param username
      * @return
      */
+    @Cacheable("users")
     public User getUserByUserName(final String username) {
-	return userRepository.findByUserName(username);
+	log.info("Reading user by username");
+	return userRepository.findByUserName(username)
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+			String.format("User id %s not found", username)));
     }
 
     /**
@@ -81,6 +90,8 @@ public class UserService {
      * @return
      */
     public User getUserByUserNameAndPassword(final User user) {
-	return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+	return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword())
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+			String.format("User %s not found", user.getUserName())));
     }
 }

@@ -38,8 +38,7 @@ public class UserController {
 
     @GetMapping(value = "/{userId}")
     @ApiOperation(value = "Returns a user for a given user ID", response = User.class)
-    @ApiResponses(value = { 
-	    @ApiResponse(code = 200, message = "The record was found"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "The record was found"),
 	    @ApiResponse(code = 404, message = "The record was not found") })
 
     public ResponseEntity<User> getUsersById(@PathVariable(value = "userId") final Integer userId) {
@@ -53,7 +52,7 @@ public class UserController {
 	return new ResponseEntity<>(userService.getUsersNames(page, size), HttpStatus.OK);
     }
 
-    @RequestMapping("/{username}")
+    @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUserName(@PathVariable("username") final String username) {
 	return new ResponseEntity<>(userService.getUserByUserName(username), HttpStatus.OK);
     }
