@@ -80,7 +80,7 @@ public class UserService {
      */
     public User getUserById(final Integer userId) {
 	return userRepository.findById(userId).orElseThrow(
-		() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User id %s not found", userId)));
+		() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User id %d not found", userId)));
     }
 
     /**

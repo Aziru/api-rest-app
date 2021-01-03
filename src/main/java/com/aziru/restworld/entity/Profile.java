@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity(name = "profile")
 public class Profile {
@@ -22,6 +24,10 @@ public class Profile {
 
     @Column(name = "birth_date")
     private String birthdate;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     /**
      * @return the id
@@ -77,6 +83,20 @@ public class Profile {
      */
     public void setBirthdate(final String birthdate) {
 	this.birthdate = birthdate;
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+	return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(final User user) {
+	this.user = user;
     }
 
     @Override
