@@ -11,7 +11,7 @@ import com.aziru.restworld.entity.Address;
 @Repository
 public interface AddressRepository extends CrudRepository<Address, Integer> {
 
-    @Query("SELECT a FROM address a WHERE a.profile.user.id = ?1 and a.profile.id = ?2")
+    @Query("SELECT a FROM Address a WHERE a.profile.user.id = ?1 and a.profile.id = ?2")
     List<Address> findAddressByUserAndProfile(Integer userId, Integer profileId);
 
 }

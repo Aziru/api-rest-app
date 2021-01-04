@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +21,12 @@ public class ProfileController {
     private ProfileService profileService;
 
     @PostMapping
-    ResponseEntity<Profile> create(@PathVariable("userId") final Integer userId, final Profile profile) {
+    ResponseEntity<Profile> create(@PathVariable("userId") final Integer userId, @RequestBody final Profile profile) {
 	return new ResponseEntity<Profile>(profileService.save(userId, profile), HttpStatus.CREATED);
     }
 
     @GetMapping("/{profileId}")
-    ResponseEntity<Profile> getById(@PathVariable("userId") final Integer userId,
-	    @PathVariable("profileId") final Integer profileId) {
+    ResponseEntity<Profile> getById(@PathVariable("userId") final Integer userId, @PathVariable("profileId") final Integer profileId) {
 	return new ResponseEntity<Profile>(profileService.findByUserIdAndProfileId(userId, profileId), HttpStatus.OK);
     }
 

@@ -30,24 +30,20 @@ public class UserController {
 
     @GetMapping
     @Timed("get.users")
-    public ResponseEntity<Page<User>> getUsers(
-	    @RequestParam(value = "page", required = false, defaultValue = "0") final int page,
+    public ResponseEntity<Page<User>> getUsers(@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
 	    @RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
 	return new ResponseEntity<>(userService.getUsers(page, size), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}")
     @ApiOperation(value = "Returns a user for a given user ID", response = User.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "The record was found"),
-	    @ApiResponse(code = 404, message = "The record was not found") })
-
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "The record was found"), @ApiResponse(code = 404, message = "The record was not found") })
     public ResponseEntity<User> getUsersById(@PathVariable(value = "userId") final Integer userId) {
 	return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
 
     @GetMapping(value = "/usernames")
-    public ResponseEntity<Page<String>> getUsersById(
-	    @RequestParam(value = "page", required = false, defaultValue = "0") final int page,
+    public ResponseEntity<Page<String>> getUsersById(@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
 	    @RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
 	return new ResponseEntity<>(userService.getUsersNames(page, size), HttpStatus.OK);
     }
