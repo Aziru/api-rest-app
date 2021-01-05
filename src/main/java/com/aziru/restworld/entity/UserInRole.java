@@ -19,12 +19,12 @@ public class UserInRole {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Role role;
-
-    @ManyToOne
     @JoinColumn(name = "role_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Role role;
 
     /**
      * @return the id
