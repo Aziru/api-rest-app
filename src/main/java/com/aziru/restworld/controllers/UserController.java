@@ -1,5 +1,7 @@
 package com.aziru.restworld.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,10 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/users")
 public class UserController {
 
+    
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
+    
     @Autowired
     private UserService userService;
 
@@ -32,6 +38,7 @@ public class UserController {
     @Timed("get.users")
     public ResponseEntity<Page<User>> getUsers(@RequestParam(value = "page", required = false, defaultValue = "0") final int page,
 	    @RequestParam(value = "size", required = false, defaultValue = "100") final int size) {
+	log.info(UserController.class.getSimpleName() + " - getUsers");
 	return new ResponseEntity<>(userService.getUsers(page, size), HttpStatus.OK);
     }
 
