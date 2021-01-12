@@ -19,6 +19,15 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    public Role(final String name) {
+	super();
+	this.name = name;
+    }
+
+    public Role() {
+	super();
+    }
+
     /**
      * @return the id
      */

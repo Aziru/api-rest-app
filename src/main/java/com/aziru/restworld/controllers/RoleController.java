@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aziru.restworld.entity.Role;
+import com.aziru.restworld.entity.User;
+import com.aziru.restworld.entity.UserInRole;
 import com.aziru.restworld.service.RoleService;
+import com.aziru.restworld.service.UserInRoleService;
 
 @RestController
 @RequestMapping(value = "/roles")
@@ -24,9 +27,22 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private UserInRoleService userInRoleService;
+
     @GetMapping
     public ResponseEntity<List<Role>> getRoles() {
 	return new ResponseEntity<>(roleService.getRoles(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{roleName}/users")
+    public ResponseEntity<List<User>> getUsersByRole(@PathVariable("roleName") final String roleName) {
+	return new ResponseEntity<List<User>>(userInRoleService.getUsersbyRoleName(roleName), HttpStatus.OK);
+    }
+
+    @PostMapping("/{roleId}/user/{userId}")
+    public ResponseEntity<UserInRole> create(@PathVariable("userId") final Integer userId, @PathVariable("roleId") final Integer roleId) {
+	return new ResponseEntity<UserInRole>(userInRoleService.create(userId, roleId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -35,8 +51,7 @@ public class RoleController {
     }
 
     @PutMapping(value = "/{roleId}")
-    public ResponseEntity<Role> updateRole(@PathVariable(name = "roleId") final Integer id,
-	    @RequestBody final Role role) {
+    public ResponseEntity<Role> updateRole(@PathVariable(name = "roleId") final Integer id, @RequestBody final Role role) {
 	return new ResponseEntity<>(roleService.updateRole(id, role), HttpStatus.OK);
     }
 

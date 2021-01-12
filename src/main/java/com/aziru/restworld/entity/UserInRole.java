@@ -26,6 +26,14 @@ public class UserInRole {
     @JoinColumn(name = "user_id")
     private Role role;
 
+    public UserInRole() {
+    }
+
+    public UserInRole(final User user, final Role role) {
+	this.user = user;
+	this.role = role;
+    }
+
     /**
      * @return the id
      */

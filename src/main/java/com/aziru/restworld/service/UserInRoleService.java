@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.aziru.restworld.entity.User;
 import com.aziru.restworld.entity.UserInRole;
 import com.aziru.restworld.repository.RoleRepository;
 import com.aziru.restworld.repository.UserInRoleRepository;
@@ -24,10 +25,6 @@ public class UserInRoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public List<UserInRole> findUserInRolebyUserId(final Integer userId) {
-	return userInRoleRepository.findUserInRoleByUserId(userId);
-    }
-
     public UserInRole create(final Integer userId, final Integer roleId) {
 	final var user = userRepository.findById(userId);
 	if (user.isPresent()) {
@@ -43,6 +40,10 @@ public class UserInRoleService {
 	} else {
 	    throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User %d not found", userId));
 	}
+    }
+
+    public List<User> getUsersbyRoleName(final String roleName) {
+	return userInRoleRepository.findUsersInRoleByRoleName(roleName);
     }
 
 }
