@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.aziru.restworld.entity.Role;
+import com.aziru.restworld.models.MyAppRestSecurityRule;
 import com.aziru.restworld.repository.RoleRepository;
 
 @Service
+@MyAppRestSecurityRule
 public class RoleService {
 
     @Autowired

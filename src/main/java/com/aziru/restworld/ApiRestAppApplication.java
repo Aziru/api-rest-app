@@ -47,7 +47,7 @@ public class ApiRestAppApplication implements ApplicationRunner {
 	    roleRepository.save(role);
 	}
 	// Loading users
-	for (var i = 0; i < 100; i++) {
+	for (var i = 0; i < 20; i++) {
 	    final var user = new User();
 	    user.setNickName(faker.funnyName().name());
 	    user.setUserName(faker.name().username());
